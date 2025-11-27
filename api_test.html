@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini api 확인</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 600px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            line-height: 1.6;
+            background: #0f172a;
+            color: #f8fafc;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Background Animation - matching main app */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: #8b5cf6;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            z-index: -1;
+            animation: float1 10s infinite ease-in-out;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: #3b82f6;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            z-index: -1;
+            animation: float2 10s infinite ease-in-out 2s;
+        }
+
+        @keyframes float1 {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(30px, -30px);
+            }
+        }
+
+        @keyframes float2 {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(-30px, 30px);
+            }
+        }
+
+        .container {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            background: linear-gradient(to right, #c4b5fd, #67e8f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            font-size: 1.75rem;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1.5rem;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #334155;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: white;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        #output {
+            margin-top: 2rem;
+        }
+
+        .result-box {
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .error {
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            color: #fca5a5;
+        }
+
+        .success {
+            background: rgba(22, 163, 74, 0.1);
+            border: 1px solid rgba(22, 163, 74, 0.3);
+            color: #86efac;
+        }
+
+        .warning {
+            background: rgba(217, 119, 6, 0.1);
+            border: 1px solid rgba(217, 119, 6, 0.3);
+            color: #fcd34d;
+        }
+
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .model-info {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+
+        .model-info strong {
+            color: #a78bfa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Gemini API 확인</h1>
+        <p class="subtitle">API 키를 입력하여 Gemini API 사용 가능 여부를 확인하세요.</p>
+
+        <label for="apiKey">Gemini API Key:</label>
+        <input type="password" id="apiKey" placeholder="API 키를 입력하세요">
+
+        <button id="testBtn">지원 여부 확인</button>
+
+        <div id="output"></div>
+    </div>
+
+    <script>
+        const testBtn = document.getElementById('testBtn');
+        const output = document.getElementById('output');
+        const apiKeyInput = document.getElementById('apiKey');
+
+        // Load saved key if available
+        const savedKey = localStorage.getItem('geminiKey');
+        if (savedKey) apiKeyInput.value = savedKey;
+
+        testBtn.addEventListener('click', async () => {
+            const apiKey = apiKeyInput.value.trim();
+            if (!apiKey) {
+                output.innerHTML = `
+                    <div class="result-box warning">
+                        <span class="icon">!</span>
+                        <strong>API 키를 입력해주세요.</strong>
+                    </div>
+                `;
+                return;
+            }
+
+            output.innerHTML = `
+                <div class="result-box" style="background: rgba(148, 163, 184, 0.1); border: 1px solid rgba(148, 163, 184, 0.3); color: #cbd5e1;">
+                    확인 중...
+                </div>
+            `;
+
+            try {
+                // Check if gemini-2.0-flash is available
+                const testUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                const testResponse = await fetch(testUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: "Hello" }] }]
+                    })
+                });
+
+                if (testResponse.ok) {
+                    output.innerHTML = `
+                        <div class="result-box success">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">✔️</div>
+                            <strong>Gemini 2.0 Flash 사용 가능</strong>
+                            <div class="model-info">
+                                <strong>모델:</strong> gemini-2.0-flash<br>
+                                <strong>상태:</strong> 정상 작동<br>
+                                <strong>결과:</strong> 이 API 키로 단어 찾기 AI를 사용할 수 있습니다.
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    const errorData = await testResponse.json();
+                    throw new Error(errorData.error?.message || 'Unknown error');
+                }
+
+            } catch (error) {
+                output.innerHTML = `
+                    <div class="result-box error">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">X</div>
+                        <strong>Gemini 2.0 Flash를 사용할 수 없습니다</strong>
+                        <div class="model-info">
+                            <strong>오류:</strong> ${error.message}<br><br>
+                            <strong>가능한 원인:</strong><br>
+                            • API 키가 잘못되었습니다<br>
+                            • Gemini 2.0 Flash 모델에 대한 액세스 권한이 없습니다<br>
+                            • API가 활성화되지 않았습니다
+                        </div>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+
+</html>
