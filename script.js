@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const resultsArea = document.getElementById('results-area');
     const loadingIndicator = document.getElementById('loading');
+    const openApiTestBtn = document.getElementById('open-api-test-btn');
+    const supportApiTestBtn = document.getElementById('support-api-test-btn');
 
     // Constants
     const DICT_API_URL = 'https://stdict.korean.go.kr/api/search.do';
@@ -61,6 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
     closeSupportBtn.addEventListener('click', () => {
         supportModal.classList.add('hidden');
     });
+
+    if (openApiTestBtn) {
+        openApiTestBtn.addEventListener('click', () => {
+            window.open('api_test.html', '_blank');
+        });
+    }
+
+    if (supportApiTestBtn) {
+        supportApiTestBtn.addEventListener('click', () => {
+            window.open('api_test.html', '_blank');
+        });
+    }
 
     saveSettingsBtn.addEventListener('click', () => {
         const geminiKey = geminiKeyInput.value.trim();
@@ -243,6 +257,14 @@ document.addEventListener('DOMContentLoaded', () => {
             `<li><span class="def-num">${index + 1}.</span> ${s.definition}</li>`
         ).join('');
 
+        // Determine the view link
+        let viewLink = '#';
+        if (item.target_code) {
+            viewLink = `https://stdict.korean.go.kr/search/searchView.do?word_no=${item.target_code}&searchKeywordTo=3`;
+        } else if (senses.length > 0 && senses[0].link) {
+            viewLink = senses[0].link;
+        }
+
         card.innerHTML = `
             <div class="word-header">
                 <div>
@@ -255,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${definitions}
             </ul>
             <div style="margin-top:15px; text-align:right;">
-                <a href="${item.view_link}" target="_blank" style="color:#3b82f6; text-decoration:none; font-size:0.9rem;">사전에서 보기 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="${viewLink}" target="_blank" style="color:#3b82f6; text-decoration:none; font-size:0.9rem;">사전에서 보기 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
         `;
 
