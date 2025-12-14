@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>진부중학교 3D 동아리</title>
+    <link rel="icon" type="image/png" href="정사각 3d 동아리 무색 로고.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="3d 동아리 로고.png" alt="진부중학교 3D 동아리 로고" class="nav-logo">
+            <span class="nav-title" data-i18n="nav.title">진부중학교 3D 동아리</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" data-i18n="nav.home">홈</a></li>
+            <li><a href="#about" data-i18n="nav.about">동아리 소개</a></li>
+            <li><a href="#gallery" data-i18n="nav.gallery">작품 갤러리</a></li>
+            <li><a href="#pursuit" data-i18n="nav.pursuit">추구하는 바</a></li>
+            <li><a href="#workflow" data-i18n="nav.workflow">워크플로우</a></li>
+            <li><a href="#contact" data-i18n="nav.contact">문의하기</a></li>
+            <li class="lang-dropdown">
+                <button class="lang-dropbtn">Language ▾</button>
+                <div class="lang-dropdown-content">
+                    <a href="#" data-lang="ko">한국어</a>
+                    <a href="#" data-lang="en">English</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title" data-i18n="hero.title">상상을 현실로,<br>창작의 세계</h1>
+            <p class="hero-subtitle" data-i18n="hero.subtitle">진부중학교 3D 동아리입니다.</p>
+            <a href="#gallery" class="cta-button" data-i18n="hero.cta">작품 보러가기</a>
+        </div>
+        <div class="hero-background"></div>
+    </header>
+
+    <section id="about" class="section about-section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="about.title">About</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 data-i18n="about.subtitle">창의와 창작</h3>
+                    <p data-i18n="about.desc">3D 창작물을 통해 우리가 오랫동안 기억하고 싶은것, 이제는 볼수없는것, 현실에 없는것을 만들어냅니다. 그리고 그 배경에는 무료
+                        오픈소스
+                        프로그램 'Blender'가 있습니다.</p>
+                </div>
+                <div class="about-image">
+                    <img src="3d 동아리 무색 로고.png" alt="3D 동아리 심볼">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section gallery-section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="gallery.title">Gallery</h2>
+            <p class="section-subtitle" data-i18n="gallery.subtitle">부원들의 열정이 담긴 작품들입니다.</p>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="예시 작품 1.png" alt="예시 작품 1">
+                    <div class="overlay">
+                        <h3>Creative Work 01</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="예시 작품 2.png" alt="예시 작품 2">
+                    <div class="overlay">
+                        <h3>Creative Work 02</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="예시 작품 3.png" alt="예시 작품 3">
+                    <div class="overlay">
+                        <h3>Creative Work 03</h3>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="gallery.html" class="cta-button" data-i18n="gallery.more">더 많은 작품 보기</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="pursuit" class="section workflow-section">
+        <div class="container">
+            <h2 class="section-title">pursuit</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 data-i18n="pursuit.subtitle">pursuit</h3>
+                    <p data-i18n="pursuit.desc">pursuit</p>
+                </div>
+                <div class="about-image">
+                    <img src="3d 동아리 로고.png" alt="3D 동아리 심볼">
+                </div>
+            </div>
+            <div>
+                <br>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="pursuit.html" class="cta-button" data-i18n="pursuit.more">동아리의 방향</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section workflow-section">
+        <div class="container">
+            <h1 class="section-title" data-i18n="workflow.title">workflow</h1>
+            <div class="workflow-content">
+                <div class="workflow-text">
+                    <h3 data-i18n="workflow.subtitle">워크플로우</h3>
+                    <p data-i18n="workflow.desc">워크플로우</p>
+                </div>
+                <div class="workflow-image">
+                    <img src="blender logo.png" alt="3D 동아리 심볼">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <img src="3d 동아리 무색 로고.png" alt="Footer Logo">
+                <p data-i18n="footer.club">진부중학교 3D 동아리</p>
+            </div>
+            <div class="footer-info">
+                <p data-i18n="footer.address">강원특별자치도 평창군 진부면</p>
+                <p>&copy; 2025 진부중학교 3D 동아리. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

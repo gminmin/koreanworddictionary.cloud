@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>진부중학교 3D 동아리 - 추구하는 바</title>
+    <link rel="icon" type="image/png" href="정사각 3d 동아리 무색 로고.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        .pursuit-page-header {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pursuit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .vision-section {
+            margin-top: 8rem;
+            position: relative;
+            padding: 6rem 2rem;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 2rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+        }
+
+        .vision-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-teal), transparent);
+        }
+
+        @media (max-width: 968px) {
+            .vision-section {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar scrolled">
+        <div class="logo-container">
+            <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 1rem;">
+                <img src="3d 동아리 로고.png" alt="진부중학교 3D 동아리 로고" class="nav-logo">
+                <span class="nav-title" data-i18n="nav.title">진부중학교 3D 동아리</span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" data-i18n="nav.home">홈으로</a></li>
+            <li class="lang-dropdown">
+                <button class="lang-dropbtn">Language ▾</button>
+                <div class="lang-dropdown-content">
+                    <a href="#" data-lang="ko">한국어</a>
+                    <a href="#" data-lang="en">English</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <header class="pursuit-page-header">
+        <div class="pursuit-hero-bg"></div>
+        <div class="container" style="position: relative; z-index: 1;">
+            <h1 class="hero-title text-gradient-animated" data-i18n="pursuit.page.title">추구하는 바</h1>
+            <p class="section-subtitle" data-i18n="pursuit.page.subtitle"
+                style="max-width: 600px; margin: 0 auto; font-size: 1.3rem;">
+                동아리의 정체성과 우리가 나아가는 방향을 정의합니다.
+            </p>
+        </div>
+    </header>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="pursuit-grid">
+                <!-- Card 1 -->
+                <div class="glass-card hover-glow fade-in delay-100">
+                    <div class="card-icon">01</div>
+                    <h3 data-i18n="pursuit.value1.title"
+                        style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-color);">자유로운 창작</h3>
+                    <p data-i18n="pursuit.value1.desc" style="color: #94a3b8; line-height: 1.7;">
+                        정해진 틀에 얽매이지 않고, 자신이 상상하는 모든 것을 3D 세상에 구현합니다.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card hover-glow fade-in delay-200">
+                    <div class="card-icon">02</div>
+                    <h3 data-i18n="pursuit.value2.title"
+                        style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-color);">자신만의 스타일</h3>
+                    <p data-i18n="pursuit.value2.desc" style="color: #94a3b8; line-height: 1.7;">
+                        남들이 하는 것을 쫓기보다, 자신만의 독특한 색깔과 감성을 작품에 담아냅니다.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card hover-glow fade-in delay-300">
+                    <div class="card-icon">03</div>
+                    <h3 data-i18n="pursuit.value3.title"
+                        style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-color);">독창성</h3>
+                    <p data-i18n="pursuit.value3.desc" style="color: #94a3b8; line-height: 1.7;">
+                        새로운 시도를 두려워하지 않고, 끊임없이 도전하며 독창적인 결과물을 만들어냅니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="vision-section fade-in">
+                <div class="about-text" style="flex: 1;">
+                    <h3 class="text-gradient-animated" style="font-size: 2.5rem; margin-bottom: 1.5rem;"
+                        data-i18n="pursuit.vision.title">우리의 비전</h3>
+                    <p data-i18n="pursuit.vision.desc" style="font-size: 1.2rem; line-height: 1.8; color: #cbd5e1;">
+                        누구나 상상할 수 있습니다. 누구나 도전할 수 있습니다. 누구나 작품을 만들 수 있습니다.<br>
+                        진부중학교 3D 동아리는 여러분의 상상력이 현실이 되는 공간입니다.
+                    </p>
+                </div>
+                <div class="about-image" style="flex: 1; display: flex; justify-content: center;">
+                    <img src="blender logo.png" alt="Blender Logo"
+                        style="max-width: 300px; filter: drop-shadow(0 0 30px rgba(4, 217, 217, 0.3)); animation: float 6s ease-in-out infinite;">
+                </div>
+            </div>
+
+            <!-- Logo Showcase & Brand Identity Section -->
+            <div class="brand-identity-section fade-in" style="margin-top: 8rem;">
+                <h3 class="text-gradient-animated" style="font-size: 2.5rem; text-align: center; margin-bottom: 3rem;">
+                    Brand Identity</h3>
+
+                <div class="identity-grid"
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+                    <!-- Logo Comparison Slider -->
+                    <div class="logo-comparison-wrapper">
+                        <h4 style="text-align: center; margin-bottom: 1.5rem; color: var(--text-color);">Logo Evolution
+                        </h4>
+                        <div class="img-comp-container">
+                            <div class="img-comp-img">
+                                <img src="3d 동아리 로고1.png" width="300" height="300" alt="New Logo">
+                            </div>
+                            <div class="img-comp-img img-comp-overlay">
+                                <img src="(구)3d 동아리 로고.png" width="300" height="300" alt="Old Logo">
+                            </div>
+                            <div class="comp-slider-handle">↔</div>
+                        </div>
+                        <p style="text-align: center; margin-top: 1rem; color: #94a3b8; font-size: 0.9rem;">
+                            드래그하여 로고의 변화를 확인해보세요<br>
+                            (좌: New / 우: Old)
+                        </p>
+                    </div>
+
+                    <!-- Color Palette -->
+                    <div class="color-palette-wrapper">
+                        <h4 style="text-align: center; margin-bottom: 1.5rem; color: var(--text-color);">Brand Colors
+                        </h4>
+                        <div class="color-palette-grid">
+                            <div class="color-swatch-item" data-color="#9c7ba6">
+                                <div class="color-swatch" style="background-color: #9c7ba6;"></div>
+                                <span class="color-code">#9c7ba6</span>
+                            </div>
+                            <div class="color-swatch-item" data-color="#5d68a6">
+                                <div class="color-swatch" style="background-color: #5d68a6;"></div>
+                                <span class="color-code">#5d68a6</span>
+                            </div>
+                            <div class="color-swatch-item" data-color="#04adbf">
+                                <div class="color-swatch" style="background-color: #04adbf;"></div>
+                                <span class="color-code">#04adbf</span>
+                            </div>
+                            <div class="color-swatch-item" data-color="#04d9d9">
+                                <div class="color-swatch" style="background-color: #04d9d9;"></div>
+                                <span class="color-code">#04d9d9</span>
+                            </div>
+                            <div class="color-swatch-item" data-color="#56bf7b">
+                                <div class="color-swatch" style="background-color: #56bf7b;"></div>
+                                <span class="color-code">#56bf7b</span>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 2rem; color: #94a3b8; font-size: 0.9rem;">
+                            색상을 클릭하여 Hex 코드를 복사하세요
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <img src="3d 동아리 무색 로고.png" alt="Footer Logo">
+                <p data-i18n="footer.club">진부중학교 3D 동아리</p>
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2025 Jinbu Middle School 3D Club. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <style>
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</body>
+
+</html>
