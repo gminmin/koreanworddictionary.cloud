@@ -36,7 +36,22 @@ const translations = {
         "pursuit.vision.desc": "<strong>'상상은 현실이 된다'</strong><br><br>진부중학교 3D 동아리는 단순한 툴 학습을 넘어,<br>창작을 위한 새로운 언어를 배웁니다.<br>우리는 서로 영감을 주고받으며 함께 성장합니다.",
         "pursuit.style.title": "우리의 스타일",
         "pursuit.style.desc": "미래를 향한 첫 걸음, 트렌드를 넘어서는 데서 시작됩니다.",
-        "pursuit.style.desc2": "미니멀니즘, 과도한 디테일은 필요하지 않습니다."
+        "pursuit.style.desc2": "미니멀니즘, 과도한 디테일은 필요하지 않습니다.",
+        "workflow.subtitle": "작품이 만들어지는 6단계 과정입니다.",
+        "workflow.step1.title": "아이디어",
+        "workflow.step1.desc": "무엇을 만들지 상상하고 구체화합니다.",
+        "workflow.step2.title": "기획",
+        "workflow.step2.desc": "레퍼런스를 수집하고 전체적인 설계를 합니다.",
+        "workflow.step3.title": "모델링",
+        "workflow.step3.desc": "3D 공간에 물체의 형태를 만듭니다.",
+        "workflow.step4.title": "리깅/애니메이팅",
+        "workflow.step4.desc": "뼈대를 심고 움직임을 부여합니다.",
+        "workflow.step5.title": "텍스쳐링",
+        "workflow.step5.desc": "재질과 색상을 입혀 리얼리티를 더합니다.",
+        "workflow.step6.title": "렌더",
+        "workflow.step6.desc": "조명과 카메라를 설정하여 최종 이미지를 출력합니다.",
+        "workflow.start_experience": "직접 경험해보기",
+        "workflow.start_experience_sub": "웹 브라우저에서 바로 작동하는 3D 가상 스튜디오를 체험해보세요."
     },
     en: {
         "nav.home": "Home",
@@ -60,9 +75,21 @@ const translations = {
         "gallery.page.title": "Full Gallery",
         "gallery.page.subtitle": "Explore all creative works by our members.",
         "gallery.work.2025": "2025 Work",
-        "workflow.title": "Workflow",
-        "workflow.subtitle": "The story behind the work<br>This is the process of creating a work of art.",
-        "workflow.desc": "The process is divided into four main stages.",
+        "workflow.subtitle": "The 6-step creation process.",
+        "workflow.step1.title": "Idea",
+        "workflow.step1.desc": "Imagine and conceptualize what to create.",
+        "workflow.step2.title": "Planning",
+        "workflow.step2.desc": "Collect references and plan the overall design.",
+        "workflow.step3.title": "Modeling",
+        "workflow.step3.desc": "Create the shape of the object in 3D space.",
+        "workflow.step4.title": "Rigging/Animating",
+        "workflow.step4.desc": "Add bones and movement to the model.",
+        "workflow.step5.title": "Texturing",
+        "workflow.step5.desc": "Apply materials and colors for realism.",
+        "workflow.step6.title": "Render",
+        "workflow.step6.desc": "Set lighting and camera to output the final image.",
+        "workflow.start_experience": "Experience it yourself",
+        "workflow.start_experience_sub": "Try the 3D Virtual Studio that works right in your browser.",
         "pursuit.more": "More about our club",
         "pursuit.title": "Pursuit",
         "pursuit.subtitle": "The Pursuit of the club is as follows.",
@@ -78,7 +105,7 @@ const translations = {
         "pursuit.vision.desc": "<strong>'Imagination Becomes Reality'</strong><br><br>Beyond simple technical skills,<br>we learn a new language to express ourselves in the digital world.<br>We inspire each other and grow together as 3D artists.",
         "pursuit.style.title": "Our Style",
         "pursuit.style.desc": "We embrace minimalism, where unnecessary details are not needed.",
-        "pursuit.style.desc2": "We embrace minimalism, where unnecessary details are not needed.",
+        "pursuit.style.desc2": "We embrace minimalism, where unnecessary details are not needed."
     }
 };
 
@@ -88,7 +115,6 @@ function updateLanguage(lang) {
     currentLang = lang;
     document.documentElement.lang = lang;
 
-    // Update text content
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(el => {
         const key = el.getAttribute('data-i18n');
@@ -97,28 +123,24 @@ function updateLanguage(lang) {
         }
     });
 
-    // Update button text
     const dropbtns = document.querySelectorAll('.lang-dropbtn');
     dropbtns.forEach(btn => {
-        btn.innerHTML = lang === 'ko' ? 'Language ▾' : 'Language ▾'; // Keep generic or change to '한국어 ▾' / 'English ▾'
-        // Let's make it show the current language for better UX
         btn.innerHTML = lang === 'ko' ? '한국어 ▾' : 'English ▾';
     });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Navbar Scroll Effect
+    // --- Navbar Scroll Effect ---
     const navbar = document.querySelector('.navbar');
-
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+        if (window.scrollY > 20) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
     });
 
-    // Intersection Observer for Fade-in Animations
+    // --- Intersection Observer for Fade-in Animations ---
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -139,20 +161,18 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // Smooth Scrolling for Anchor Links
+    // --- Smooth Scrolling ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
+                target.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
 
-    // Language Dropdown Logic
+    // --- Language Selection ---
     const langLinks = document.querySelectorAll('[data-lang]');
     langLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -161,54 +181,38 @@ document.addEventListener('DOMContentLoaded', () => {
             updateLanguage(lang);
         });
     });
-
-    // Initialize button text
     updateLanguage('ko');
 
-    // Logo Comparison Slider Logic
+    // --- Logo Comparison Slider ---
     function initComparisons() {
         const container = document.querySelector('.img-comp-container');
         const overlay = document.querySelector('.img-comp-overlay');
         const handle = document.querySelector('.comp-slider-handle');
-
         if (!container || !overlay || !handle) return;
 
         let clicked = 0;
         let w = container.offsetWidth;
-
-        // Ensure starting position (50%)
         slide(w / 2);
 
-        function updateDraggingState(isDragging) {
-            if (isDragging) container.classList.add('dragging');
-            else container.classList.remove('dragging');
-        }
-
-
-
-        // Add events to handle
         handle.addEventListener("mousedown", slideReady);
         handle.addEventListener("touchstart", slideReady);
-
-        // Add events to container (click/drag anywhere in container to move)
         container.addEventListener("mousedown", slideReady);
         container.addEventListener("touchstart", slideReady);
-
         window.addEventListener("mouseup", slideFinish);
         window.addEventListener("touchend", slideFinish);
 
         function slideReady(e) {
             e.preventDefault();
             clicked = 1;
-            updateDraggingState(true);
+            container.classList.add('dragging');
             window.addEventListener("mousemove", slideMove);
             window.addEventListener("touchmove", slideMove);
-            slideMove(e); // Update position immediately on click
+            slideMove(e);
         }
 
         function slideFinish() {
             clicked = 0;
-            updateDraggingState(false);
+            container.classList.remove('dragging');
             window.removeEventListener("mousemove", slideMove);
             window.removeEventListener("touchmove", slideMove);
         }
@@ -216,43 +220,25 @@ document.addEventListener('DOMContentLoaded', () => {
         function slideMove(e) {
             if (clicked == 0) return;
             let pos = getCursorPos(e);
-
-            // Constrain
             if (pos < 0) pos = 0;
             if (pos > w) pos = w;
-
             slide(pos);
         }
 
         function getCursorPos(e) {
-            let a, x = 0;
             e = (e.changedTouches) ? e.changedTouches[0] : e;
-
-            // Get position relative to viewport
-            a = container.getBoundingClientRect();
-
-            // Calculate relative to container
-            x = e.clientX - a.left;
-
-            return x;
+            const a = container.getBoundingClientRect();
+            return e.clientX - a.left;
         }
 
         function slide(x) {
             overlay.style.width = x + "px";
-            handle.style.left = overlay.offsetWidth + "px"; // Move handle
+            handle.style.left = overlay.offsetWidth + "px";
         }
     }
-
-    // Initialize slider if element exists
     initComparisons();
 
-    // Re-init on resize to handle responsive width changes
-    window.addEventListener('resize', () => {
-        // Simple re-init / adjustment logic could go here if needed
-        // For now, let's keep it simple.
-    });
-
-    // Color Palette Copy Logic
+    // --- Color Palette Copy ---
     const colorSwatches = document.querySelectorAll('.color-swatch-item');
     colorSwatches.forEach(swatch => {
         swatch.addEventListener('click', () => {
@@ -260,54 +246,121 @@ document.addEventListener('DOMContentLoaded', () => {
             const codeElement = swatch.querySelector('.color-code');
             const originalText = codeElement.innerText;
 
-            // Function to handle success visual feedback
             const showSuccess = () => {
                 codeElement.innerText = "Copied!";
-                codeElement.style.color = "#4ade80"; // Success green
-
+                codeElement.style.color = "#4ade80";
                 setTimeout(() => {
                     codeElement.innerText = originalText;
                     codeElement.style.color = "";
                 }, 1500);
             };
 
-            // Try modern API first
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(colorCode).then(showSuccess).catch(err => {
-                    console.error('Clipboard API failed', err);
-                    fallbackCopy(colorCode);
-                });
+                navigator.clipboard.writeText(colorCode).then(showSuccess);
             } else {
-                fallbackCopy(colorCode);
-            }
-
-            function fallbackCopy(text) {
                 const textArea = document.createElement("textarea");
-                textArea.value = text;
-
-                // Avoid scrolling to bottom
-                textArea.style.top = "0";
-                textArea.style.left = "0";
-                textArea.style.position = "fixed";
-
+                textArea.value = colorCode;
                 document.body.appendChild(textArea);
-                textArea.focus();
                 textArea.select();
-
-                try {
-                    const successful = document.execCommand('copy');
-                    if (successful) {
-                        showSuccess();
-                    } else {
-                        alert("Hex code: " + text); // Ultimate fallback
-                    }
-                } catch (err) {
-                    console.error('Fallback copy failed', err);
-                    alert("Hex code: " + text);
-                }
-
+                document.execCommand('copy');
                 document.body.removeChild(textArea);
+                showSuccess();
             }
         });
+    });
+
+    // --- Neon Pipeline Progress & Node Activation ---
+    const workflowSection = document.querySelector('.workflow-section');
+    const pipelineFill = document.querySelector('.pipeline-fill');
+    const workflowNodes = document.querySelectorAll('.workflow-node-item');
+
+    function updateTimeline() {
+        if (!workflowSection || !pipelineFill) return;
+
+        const windowHeight = window.innerHeight;
+        const system = document.querySelector('.workflow-system');
+        if (!system) return;
+
+        const systemRect = system.getBoundingClientRect();
+        const isMobile = window.innerWidth <= 768;
+
+        // 1. Pipeline Progress
+        // Mobile needs slightly different trigger points to feel right
+        const drawPoint = windowHeight * (isMobile ? 0.5 : 0.6);
+        let progress = (drawPoint - systemRect.top) / systemRect.height;
+        progress = Math.max(0, Math.min(1, progress));
+        pipelineFill.style.height = `${progress * 100}%`;
+
+        // 2. Atmosphere Shift
+        if (progress > 0.05 && progress < 0.95) {
+            document.body.classList.add('workflow-active');
+        } else {
+            document.body.classList.remove('workflow-active');
+        }
+
+        // 3. Precise Node Activation
+        // On mobile, trigger closer to the center of the screen
+        const activationZone = windowHeight * (isMobile ? 0.55 : 0.65);
+        workflowNodes.forEach(node => {
+            const nodePoint = node.querySelector('.node-point');
+            if (!nodePoint) return;
+            const pointRect = nodePoint.getBoundingClientRect();
+            const pointCenter = pointRect.top + (pointRect.height / 2);
+
+            if (pointCenter < activationZone) {
+                node.classList.add('active');
+            } else {
+                node.classList.remove('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', () => {
+        requestAnimationFrame(updateTimeline);
+    });
+    updateTimeline();
+
+    // --- 3D Magnet Interaction ---
+    const workflowCards = document.querySelectorAll('.workflow-card');
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (!isTouchDevice) {
+        workflowCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -10;
+                const rotateY = ((x - centerX) / centerX) * 10;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+    }
+
+    // --- Mouse Parallax ---
+    const heroTitle = document.querySelector('.hero-title');
+    const heroSubtitle = document.querySelector('.hero-subtitle');
+    const globalBg = document.querySelector('.global-background');
+
+    document.addEventListener('mousemove', (e) => {
+        const xPos = (e.clientX / window.innerWidth - 0.5) * 2;
+        const yPos = (e.clientY / window.innerHeight - 0.5) * 2;
+        if (heroTitle) heroTitle.style.transform = `translate(${xPos * -20}px, ${yPos * -20}px)`;
+        if (heroSubtitle) heroSubtitle.style.transform = `translate(${xPos * -10}px, ${yPos * -10}px)`;
+        if (globalBg) globalBg.style.transform = `translate(${xPos * 10}px, ${yPos * 10}px) scale(1.1)`;
+    });
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const aboutImage = document.querySelector('.about-image img');
+        if (aboutImage) {
+            aboutImage.style.transform = `translateY(${scrolled * 0.1}px)`;
+        }
     });
 });

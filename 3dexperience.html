@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Experience | Virtual Workspace</title>
+    <link rel="stylesheet" href="style.css?v=26">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- Three.js Global Scripts (for file:// protocol support) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/controls/TransformControls.js"></script>
+</head>
+
+<body class="experience-page">
+    <!-- Immersive Background -->
+    <div class="global-background"></div>
+
+    <!-- 3D Viewport Container -->
+    <div id="experience-container">
+        <!-- Three.js Canvas will be injected here -->
+    </div>
+
+    <!-- HUD Overlay -->
+    <div class="experience-hud">
+        <header class="hud-header">
+            <div class="hud-logo">
+                <span class="hud-status-pulse"></span>
+                <span class="hud-system-title">3D VIEWPORT v1.0.4</span>
+            </div>
+            <div class="hud-stats">
+                <span id="stat-fps">FPS: 60</span>
+                <span id="stat-objects">OBJECTS: 1</span>
+                <span id="stat-vertices">VERTS: 8</span>
+            </div>
+        </header>
+
+        <!-- Left Tool Shelf -->
+        <aside class="hud-tools">
+            <div class="tool-group">
+                <button class="tool-btn active" id="tool-select" title="Select (W)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7 2.2l12 11.5h-7.3l1.5 7.5-3 .7L8.5 14 3.5 18z" fill="currentColor" />
+                    </svg>
+                </button>
+            </div>
+            <div class="tool-group transform-group">
+                <button class="tool-btn" id="tool-grab" title="Grab (G)">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M11 2v9h-9v2h9v9h2v-9h9v-2h-9v-9h-2zm1 2l2.3 2.3h-4.6l2.3-2.3zm-10 9l2.3-2.3v4.6l-2.3-2.3zm20 0l-2.3 2.3v-4.6l2.3 2.3zm-10 7l-2.3-2.3h4.6l-2.3-2.3z"
+                            fill="currentColor" />
+                    </svg>
+                </button>
+                <button class="tool-btn" id="tool-rotate" title="Rotate (R)">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12s4.5-10 10-10zm0 2C7.6 4 4 7.6 4 12s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm3 6l3 3-3 3v-2.5c-1.5 0-3 1-3.5 2.5l-1.5-.5c.8-3 3.2-4.5 5-4.5v-2z"
+                            fill="currentColor" />
+                    </svg>
+                </button>
+                <button class="tool-btn" id="tool-scale" title="Scale (S)">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M4 4h6v2H6v4H4V4zm14 0h-6v2h4v4h2V4zM4 20h6v-2H6v-4H4v6zm14 0h-6v-2h4v-4h2v6zM9 9h6v6H9V9z"
+                            fill="currentColor" />
+                    </svg>
+                </button>
+            </div>
+            <div class="tool-divider"></div>
+            <div class="tool-group">
+                <div class="add-menu-container">
+                    <button class="tool-btn" id="btn-add-object" title="Add Object (+)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor" />
+                        </svg>
+                    </button>
+                    <div class="add-dropdown">
+                        <div class="add-dropdown-inner">
+                            <button data-type="cube">CUBE</button>
+                            <button data-type="sphere">SPHERE</button>
+                            <button data-type="torus">TORUS</button>
+                            <button data-type="cylinder">CYLINDER</button>
+                            <button data-type="camera">CAMERA</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-group">
+                <button class="tool-btn" id="btn-toggle-camera" title="Look Through Camera (0)">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3m10 3c0-5.52-4.48-10-10-10S2 6.48 2 12s4.48 10 10 10 10-4.48 10-10zM12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+                            fill="currentColor" />
+                    </svg>
+                </button>
+                <button class="tool-btn" id="toggle-wireframe" title="Toggle Wireframe (Z)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z" fill="currentColor" />
+                    </svg>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Right Properties Panel -->
+        <aside class="hud-properties">
+            <div class="panel-section">
+                <h4>TRANSFORM</h4>
+                <div class="prop-row">
+                    <span>Position</span>
+                    <div class="vec-input">
+                        <span id="pos-x">0.00</span>
+                        <span id="pos-y">0.00</span>
+                        <span id="pos-z">0.00</span>
+                    </div>
+                </div>
+                <div class="prop-row">
+                    <span>Rotation</span>
+                    <div class="vec-input">
+                        <span id="rot-x">0.00</span>
+                        <span id="rot-y">0.00</span>
+                        <span id="rot-z">0.00</span>
+                    </div>
+                </div>
+                <div class="prop-row">
+                    <span>Scale</span>
+                    <div class="vec-input">
+                        <span id="scl-x">1.00</span>
+                        <span id="scl-y">1.00</span>
+                        <span id="scl-z">1.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-section">
+                <h4>MATERIAL EDITOR</h4>
+                <div class="material-controls">
+                    <div class="control-group">
+                        <label>Color</label>
+                        <input type="color" id="mat-color" value="#5d68a6">
+                    </div>
+                    <div class="control-group">
+                        <label>Metallic</label>
+                        <input type="range" id="mat-metal" min="0" max="1" step="0.01" value="0.2">
+                    </div>
+                    <div class="control-group">
+                        <label>Opacity</label>
+                        <input type="range" id="mat-alpha" min="0" max="1" step="0.01" value="1.0">
+                    </div>
+                </div>
+            </div>
+            <div class="panel-section">
+                <h4>RENDER SETTINGS</h4>
+                <div class="prop-row">
+                    <span>Ratio</span>
+                    <select id="render-ratio" class="hud-select">
+                        <option value="viewport">Viewport</option>
+                        <option value="16:9">16:9 Landscape</option>
+                        <option value="1:1">1:1 Square</option>
+                        <option value="9:16">9:16 Portrait</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn-render" id="btn-render">RENDER & CAPTURE</button>
+        </aside>
+
+        <!-- Bottom Shortcut Guide -->
+        <footer class="hud-footer">
+            <div class="shortcuts">
+                <span class="key">G</span> Grab <span class="sep">|</span>
+                <span class="key">R</span> Rotate <span class="sep">|</span>
+                <span class="key">S</span> Scale <span class="sep">|</span>
+                <span class="key">Z</span> Wireframe <span class="sep">|</span>
+                <span class="key">ESC</span> Reset
+            </div>
+            <button class="btn-exit" onclick="location.href='index.html'">EXIT WORKSPACE</button>
+        </footer>
+    </div>
+
+    <!-- Render Overlay (Simulation) -->
+    <div class="render-overlay" id="render-overlay">
+        <div class="render-info">
+            <h3>RENDER IN PROGRESS</h3>
+            <p>Sampling: <span id="render-samples">0</span> / 1024</p>
+            <div class="render-progress-bar">
+                <div class="progress-fill" id="render-progress"></div>
+            </div>
+        </div>
+        <div class="render-canvas-sim" id="render-canvas-sim">
+            <!-- Tiled render effect will happen here -->
+        </div>
+        <button class="btn-close-render" id="btn-close-render">BACK TO VIEWPORT</button>
+    </div>
+
+    <script src="3d-experience.js"></script>
+</body>
+
+</html>

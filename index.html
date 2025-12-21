@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>진부중학교 3D 동아리</title>
     <link rel="icon" type="image/png" href="정사각 3d 동아리 무색 로고.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=25">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap"
@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <div class="global-background"></div>
     <nav class="navbar">
         <div class="logo-container">
             <img src="3d 동아리 로고.png" alt="진부중학교 3D 동아리 로고" class="nav-logo">
@@ -98,32 +99,107 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3 data-i18n="pursuit.subtitle">pursuit</h3>
-                    <p data-i18n="pursuit.desc">pursuit</p>
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <a href="pursuit.html" class="cta-button" data-i18n="pursuit.more">동아리의 방향</a>
+                    </div>
                 </div>
                 <div class="about-image">
                     <img src="3d 동아리 로고.png" alt="3D 동아리 심볼">
                 </div>
             </div>
-            <div>
-                <br>
-            </div>
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="pursuit.html" class="cta-button" data-i18n="pursuit.more">동아리의 방향</a>
-            </div>
         </div>
     </section>
 
-    <section id="workflow" class="section workflow-section">
+    <section class="workflow-section" id="workflow">
         <div class="container">
-            <h1 class="section-title" data-i18n="workflow.title">workflow</h1>
-            <div class="workflow-content">
-                <div class="workflow-text">
-                    <h3 data-i18n="workflow.subtitle">워크플로우</h3>
-                    <p data-i18n="workflow.desc">워크플로우</p>
+            <h2 class="section-title">Workflow</h2>
+            <p class="section-subtitle">Ideas into Reality</p>
+
+            <!-- Auto Tour Removed -->
+
+            <!-- Neon Node System Container -->
+            <div class="workflow-system">
+                <!-- Central Pipeline -->
+                <div class="workflow-pipeline">
+                    <div class="pipeline-fill"></div>
                 </div>
-                <div class="workflow-image">
-                    <img src="blender logo.png" alt="3D 동아리 심볼">
+
+                <!-- Nodes -->
+                <!-- Node 01 -->
+                <div class="workflow-node-item left-branch">
+                    <div class="node-connector"></div>
+                    <div class="node-point"></div>
+                    <div class="workflow-card glass-card hover-glow">
+                        <div class="node-number-bg">01</div>
+                        <h3 data-i18n="workflow.step1.title">아이디어</h3>
+                        <p data-i18n="workflow.step1.desc">무엇을 만들지 상상하고 구체화합니다.</p>
+                    </div>
                 </div>
+
+                <!-- Node 02 -->
+                <div class="workflow-node-item right-branch">
+                    <div class="node-connector"></div>
+                    <div class="node-point"></div>
+                    <div class="workflow-card glass-card hover-glow">
+                        <div class="node-number-bg">02</div>
+                        <h3 data-i18n="workflow.step2.title">기획</h3>
+                        <p data-i18n="workflow.step2.desc">레퍼런스를 수집하고 전체적인 설계를 합니다.</p>
+                    </div>
+                </div>
+
+                <!-- Node 03 -->
+                <div class="workflow-node-item left-branch">
+                    <div class="node-connector"></div>
+                    <div class="node-point"></div>
+                    <div class="workflow-card glass-card hover-glow">
+                        <div class="node-number-bg">03</div>
+                        <h3 data-i18n="workflow.step3.title">모델링</h3>
+                        <p data-i18n="workflow.step3.desc">3D 공간에 물체의 형태를 만듭니다.</p>
+                    </div>
+                </div>
+
+                <!-- Node 04 -->
+                <div class="workflow-node-item right-branch">
+                    <div class="node-connector"></div>
+                    <div class="node-point"></div>
+                    <div class="workflow-card glass-card hover-glow">
+                        <div class="node-number-bg">04</div>
+                        <h3 data-i18n="workflow.step4.title">리깅/애니메이팅</h3>
+                        <p data-i18n="workflow.step4.desc">뼈대를 심고 움직임을 부여합니다.</p>
+                    </div>
+                </div>
+
+                <!-- Node 05 -->
+                <div class="workflow-node-item left-branch">
+                    <div class="node-connector"></div>
+                    <div class="node-point"></div>
+                    <div class="workflow-card glass-card hover-glow">
+                        <div class="node-number-bg">05</div>
+                        <h3 data-i18n="workflow.step5.title">텍스쳐링</h3>
+                        <p data-i18n="workflow.step5.desc">재질과 색상을 입혀 리얼리티를 더합니다.</p>
+                    </div>
+                </div>
+
+                <!-- Node 06 -->
+                <div class="workflow-node-item right-branch">
+                    <div class="node-connector"></div>
+                    <div class="node-point"></div>
+                    <div class="workflow-card glass-card hover-glow">
+                        <div class="node-number-bg">06</div>
+                        <h3 data-i18n="workflow.step6.title">렌더</h3>
+                        <p data-i18n="workflow.step6.desc">조명과 카메라를 설정하여 최종 이미지를 출력합니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Redirect Button -->
+            <div class="workflow-footer-cta">
+                <a href="3dexperience.html" class="experience-cta-btn" data-i18n="workflow.start_experience">
+                    <span class="btn-icon">⚡</span>
+                    <span class="btn-text">직접 경험해보기</span>
+                </a>
+                <p class="cta-subtext" data-i18n="workflow.start_experience_sub">웹 브라우저에서 바로 작동하는 3D 가상 스튜디오를 체험해보세요.
+                </p>
             </div>
         </div>
     </section>
